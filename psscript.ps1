@@ -14,4 +14,4 @@ $securePassword =  ConvertTo-SecureString $password `
 
 $cred = New-Object System.Management.Automation.PSCredential($username, $securePassword)
     
-Add-Computer -DomainName $domainName -Credential $cred -Restart –Force
+powershell -noexit -command &{Add-Computer -DomainName $domainName -Credential $cred -Restart –Force}
