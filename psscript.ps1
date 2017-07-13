@@ -1,4 +1,4 @@
-$domainName = "systest1.com"
+$domainName = "domain.com"
 
 $username = "sysgain"
 
