@@ -1,6 +1,6 @@
 $domainName = "domain.com"
 
-$username = "sysgain"
+$username = "domain.com\sysgain"
 
 $password = "Sysgain@123456"
 
