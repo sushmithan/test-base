@@ -6,7 +6,7 @@ $password = "Sysgain@123456"
 
 Set-DnsClient `
     -InterfaceAlias "Ethernet*" `
-    -ConnectionSpecificSuffix systest1.com
+    -ConnectionSpecificSuffix domain.com
 
 $securePassword =  ConvertTo-SecureString $password `
     -AsPlainText `
