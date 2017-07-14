@@ -1,12 +1,12 @@
-$domainName = "domain.com"
+$domainName = "pizza.com"
 
-$username = "domain.com\sysgain"
+$username = "pizza.com\sysgain"
 
 $password = "Sysgain@123456"
 
 Set-DnsClient `
     -InterfaceAlias "Ethernet*" `
-    -ConnectionSpecificSuffix domain.com 
+    -ConnectionSpecificSuffix pizza.com 
 
 $securePassword =  ConvertTo-SecureString $password `
     -AsPlainText `
