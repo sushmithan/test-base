@@ -4,7 +4,7 @@
 
 param(
     [string] $domainName = "$1",
-     [string] $username="$domainname\$2",
+     [string] $username="$domainName\$2",
     [string] $password = "$3"
   )
     
