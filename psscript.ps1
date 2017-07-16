@@ -2,20 +2,20 @@
 
 #D:\SQLEXPRADV_x64_ENU.exe /ACTION=install /QS /INSTANCENAME="mssqlserver" /SECURITYMODE=SQL /SA PWD="Sysgain@123456" /IACCEPTSQLSERVERLICENSETERMS=1 /FEATURES=SQLENGINE,SSMS /SQLSYSADMINACCOUNTS="adVM\windowsuser"
 
-$domainName = "pizza.com"
-
-$username = "pizza.com\sysgain"
-
-$password = "Sysgain@123456"
-
+param(
+    [string] $domainName, = "$1",
+     [string] $username="$domainname\$2",
+    [string] $password = "$3"
+  )
+    
 Set-DnsClient `
-    -InterfaceAlias "Ethernet*" `
-    -ConnectionSpecificSuffix pizza.com 
+    -InterfaceAlias "Ethernet*" 
+    -ConnectionSpecificSuffix $domainName `
 
 $securePassword =  ConvertTo-SecureString $password `
     -AsPlainText `
     -Force
 
 $cred = New-Object System.Management.Automation.PSCredential($username, $securePassword)
-
-Add-Computer -DomainName $domainName -Credential $cred -Restart
+    
+Add-Computer -DomainName $domainName -Credential $cred -Restart 
