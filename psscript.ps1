@@ -2,20 +2,23 @@
 
 #D:\SQLEXPRADV_x64_ENU.exe /ACTION=install /QS /INSTANCENAME="mssqlserver" /SECURITYMODE=SQL /SA PWD="Sysgain@123456" /IACCEPTSQLSERVERLICENSETERMS=1 /FEATURES=SQLENGINE,SSMS /SQLSYSADMINACCOUNTS="adVM\windowsuser"
 
-param(
-    [string] $domainName = "$1",
-     [string] $username="$domainName\$2",
-    [string] $password = "$3"
-  )
-    
-Set-DnsClient `
-    -InterfaceAlias "Ethernet*" 
-    -ConnectionSpecificSuffix $domainName `
+param
+(
+[string] $domainName = "$1",
 
+[string] $username = "$2",
+
+[string] $password = "$3"
+)
+
+$usernamenNew = $domainName+"\"+${username}
+Set-DnsClient `
+    -InterfaceAlias "Ethernet*" `
+    -ConnectionSpecificSuffix $domainName
 $securePassword =  ConvertTo-SecureString $password `
     -AsPlainText `
     -Force
 
-$cred = New-Object System.Management.Automation.PSCredential($username, $securePassword)
+$cred = New-Object System.Management.Automation.PSCredential($usernamenNew, $securePassword)
     
-Add-Computer -DomainName $domainName -Credential $cred -Restart 
+Add-Computer -DomainName $domainName -Credential $cred -Restart –Force
