@@ -3,7 +3,7 @@
 #D:\SQLEXPRADV_x64_ENU.exe /ACTION=install /QS /INSTANCENAME="mssqlserver" /SECURITYMODE=SQL /SA PWD="Sysgain@123456" /IACCEPTSQLSERVERLICENSETERMS=1 /FEATURES=SQLENGINE,SSMS /SQLSYSADMINACCOUNTS="adVM\windowsuser"
 
 param(
-    [string] $domainName, = "$1",
+    [string] $domainName = "$1",
      [string] $username="$domainname\$2",
     [string] $password = "$3"
   )
