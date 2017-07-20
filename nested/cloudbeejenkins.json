@@ -116,6 +116,10 @@
         "jenkinsEEvmname": {
             "type": "string",
             "defaultValue": "jenkinsEE"
+        },
+        "virtualNetworkName":{
+            "type": "string",
+            "defaultValue": "MyVnet"
         }
     },
     "variables": {
@@ -345,7 +349,7 @@
             "dependsOn": [
                 "[concat('Microsoft.Network/publicIPAddresses/jenkinsIP',copyIndex())]",
                 "Microsoft.Network/networkSecurityGroups/jenkinsSecurityGroup",
-                "Microsoft.Network/virtualNetworks/MyVnet"
+                "[concat('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]",
             ],
             "properties": {
                 "ipConfigurations": [
@@ -358,7 +362,7 @@
                                 "id": "[resourceId('Microsoft.Network/publicIPAddresses', concat('jenkinsIP',copyIndex()))]"
                             },
                             "subnet": {
-                                "id": "[concat(resourceId('Microsoft.Network/virtualNetworks','MyVnet'), '/subnets/',parameters('subnetName'))]"
+                                "id": "[concat(resourceId('Microsoft.Network/virtualNetworks',parameters('virtualNetworkName')), '/subnets/',parameters('subnetName'))]"
                             }
                         }
                     }
@@ -488,7 +492,7 @@
                 "Microsoft.Compute/virtualMachines/jenkinsEEvmname",
                 "[concat('Microsoft.Resources/deployments/publicIPTemplate')]",
                 "Microsoft.Network/networkSecurityGroups/jenkinsSecurityGroup",
-                "Microsoft.Network/virtualNetworks/MyVnet"
+                "[concat('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]",
             ],
             "properties": {
                 "ipConfigurations": [
@@ -501,7 +505,7 @@
                                 "id": "[resourceId('sshjenkins','Microsoft.Network/publicIpAddresses', parameters('publicIPName'))]"
                             },
                             "subnet": {
-                                "id": "[concat(resourceId('Microsoft.Network/virtualNetworks','MyVnet'), '/subnets/',parameters('subnetName'))]"
+                                "id": "[concat(resourceId('Microsoft.Network/virtualNetworks',parameters('virtualNetworkName')), '/subnets/',parameters('subnetName'))]"
                             }
                         }
                     }
