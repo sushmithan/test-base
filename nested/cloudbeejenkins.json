@@ -119,7 +119,9 @@
         },
         "virtualNetworkName":{
             "type": "string",
-            "defaultValue": "MyVnet"
+            "metadata": {
+				"description": "Name of the Virtual Network"
+			}
         }
     },
     "variables": {
