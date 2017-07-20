@@ -344,7 +344,8 @@
             },
             "dependsOn": [
                 "[concat('Microsoft.Network/publicIPAddresses/jenkinsIP',copyIndex())]",
-                "Microsoft.Network/networkSecurityGroups/jenkinsSecurityGroup"
+                "Microsoft.Network/networkSecurityGroups/jenkinsSecurityGroup",
+                "Microsoft.Network/virtualNetworks/MyVnet"
             ],
             "properties": {
                 "ipConfigurations": [
@@ -486,7 +487,8 @@
             "dependsOn": [
                 "Microsoft.Compute/virtualMachines/jenkinsEEvmname",
                 "[concat('Microsoft.Resources/deployments/publicIPTemplate')]",
-                "Microsoft.Network/networkSecurityGroups/jenkinsSecurityGroup"
+                "Microsoft.Network/networkSecurityGroups/jenkinsSecurityGroup",
+                "Microsoft.Network/virtualNetworks/MyVnet"
             ],
             "properties": {
                 "ipConfigurations": [
