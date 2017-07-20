@@ -180,7 +180,8 @@
         "storageaccountResourceDtr": "[concat('stordtr',variables('uniqueString'))]",
         "blobStorageAccountType": "Standard_LRS",
         "blobStorageaccessTier": "Hot",
-        "blobStorageencryptionEnabled": false
+        "blobStorageencryptionEnabled": false,
+        "jenkinseenicName":"eeNic"
     },
     "resources": [
         {
@@ -482,7 +483,7 @@
             }
         },
         {
-            "name": "eeNic",
+            "name": "[variables('jenkinseenicName')]",
             "apiVersion": "2016-09-01",
             "type": "Microsoft.Network/networkInterfaces",
             "location": "[variables('location')]",
@@ -524,7 +525,7 @@
             "location": "[variables('location')]",
             "dependsOn": [
                 "Microsoft.Resources/deployments/storageTemplate",
-                "Microsoft.Network/networkInterfaces/eeNic"
+               "[concat('Microsoft.Network/networkInterfaces/', variables('jenkinseenicName'))]"
             ],
             "tags": {
                 "quickstartName": "[parameters('quickstartTags').name]",
@@ -563,7 +564,7 @@
                 "networkProfile": {
                     "networkInterfaces": [
                         {
-                            "id": "[resourceId('Microsoft.Network/networkInterfaces','eeNic')]"
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces',variables('jenkinseenicName'))]"
                         }
                     ]
                 }
