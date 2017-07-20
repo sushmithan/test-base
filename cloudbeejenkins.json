@@ -484,7 +484,7 @@
         "provider":"[parameters('cloudbeesTags').provider]"
       },
       "dependsOn": [
-        "[concat('Microsoft.Network/virtualNetworks/eeNic')]",
+        "[concat('Microsoft.Network/virtualNetworks/','eeNic')]",
         "[concat('Microsoft.Resources/deployments/publicIPTemplate')]",
         "Microsoft.Network/networkSecurityGroups/jenkinsSecurityGroup"
       ],
